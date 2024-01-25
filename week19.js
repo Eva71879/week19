@@ -2,16 +2,40 @@
 //Создайте функцию makeOne, которая выполняет GET-запрос по адресу https://catfact.ninja/fact, используя функцию fetch(). Результат должен быть выведен в консоль. Функция вызывается по нажатию кнопки "Задание 1".
 
 function makeOne() {
-	//Ваш код
+	fetch('https://catfact.ninja/fact')
+	.then(data => {
+		console.log(data);
+		return data.text();
+	})
+	.then(data => {
+		console.log(data);
+	})
 }
 
 document.querySelector('.b-1').addEventListener('click', makeOne);
 
 //Задание 2
 //Создайте функцию makeTwo, которая выполняет GET-запрос по адресу https://emojihub.yurace.pro/api/random/group/face-positive. Результат запроса - поле htmlCode вставьте в элемент с id result2.
+// Функция makeTwo должна сделать GET-запрос по адресу https://emojihub.yurace.pro/api/random/group/face-positive с помощью функции fetch()
+// Полученный ответ должен быть преобразован в формат JSON с помощью метода response.json()
+// Затем из полученного JSON-объекта нужно извлечь свойство "htmlCode", которое содержит HTML-код для вставки
+// Далее нужно создать элемент <p> и установить его содержимое равным значению из свойства "htmlCode"
+// Созданный элемент <p> должен быть вставлен в элемент с id "result2" в DOM-дерево
 
 function makeTwo() {
-	//Ваш код
+	fetch('https://emojihub.yurace.pro/api/random/group/face-positive')
+	.then(response => {
+		return response.json();
+	})
+	.then((response) => {
+		let result = response.htmlCode;
+		const newElement = document.createElement('p');
+		newElement.innerHTML += result;
+		document.getElementById('result2').appendChild(newElement);
+	})
+	.catch((error) => {
+		console.log('Ошибка. Запрос не выполнен: ', error)
+	})
 }
 
 document.querySelector('.b-2').addEventListener('click', makeTwo);
@@ -20,7 +44,9 @@ document.querySelector('.b-2').addEventListener('click', makeTwo);
 //Создайте функцию makeThree, которая выполняет GET-запрос по адресу https://www.boredapi.com/api/activity, используя функцию fetch(). Выведите в консоль ответ с сервера, чтобы убедиться, что получили данные.
 
 function makeThree() {
-	//Ваш код
+	fetch('https://www.boredapi.com/api/activity')
+	.then(response => console.log(response))
+	.catch(error => console.log('Ошибка. Запрос не выполнен:', error))
 }
 
 document.querySelector('.b-3').addEventListener('click', makeThree);
@@ -29,7 +55,17 @@ document.querySelector('.b-3').addEventListener('click', makeThree);
 //Создайте функцию makeFour, которая делает запрос на адрес https://www.boredapi.com/api/activity. Выведите в консоль полученную активность в формате 'Activity: описание активности'.
 
 function makeFour() {
-	//Ваш код
+	fetch('https://www.boredapi.com/api/activity')
+	.then(response => {
+		console.log(response)
+		return response.json()
+	})
+	.then(response => {
+		console.log(response)
+		console.log(`Описание активности: ${response.activity}`)
+		console.log(`Описание активности: ${response.participants}`)
+	})
+	
 }
 
 document.querySelector('.b-4').addEventListener('click', makeFour);
@@ -38,16 +74,20 @@ document.querySelector('.b-4').addEventListener('click', makeFour);
 //Создайте функцию makeFive, которая делает запрос на адрес https://www.boredapi.com/api/activity. Выведите в консоль количество участников для активности.
 
 function makeFive() {
-	//Ваш код
+	fetch('https://www.boredapi.com/api/activity')
+	.then(response => response.json())
+	.then(response => console.log(`Количество участников: ${response.participants}`))
 }
 
-//добавьте слушатель события
+document.querySelector('.b-5').addEventListener('click', makeFive);
 
 //Задание 6
 //Создайте функцию makeSix, которая делает запрос на адрес https://www.boredapi.com/api/activity. Выведите в консоль свойства из полученного объекта, такие как activity, type, price и accessibility.
 
 function makeSix() {
-	//Ваш код
+	fetch('https://www.boredapi.com/api/activity')
+	.then(response => response.json())
+	.then(response => console.log(`${response.activity}, ${response.type}, ${response.price}, ${response.accessibility}`))
 }
 
 document.querySelector('.b-6').addEventListener('click', makeSix);
@@ -56,16 +96,22 @@ document.querySelector('.b-6').addEventListener('click', makeSix);
 //Создайте функцию makeSeven, которая делает запрос на адрес https://api.agify.io/. Выведите в консоль ответ с сервера, чтобы убедиться, что получили данные.
 
 function makeSeven() {
-	//Ваш код
+	fetch('https://api.agify.io/')
+	.then(data => data.json())
+	.then(data => console.log(data))
+	.catch(error => console.log(error))
 }
 
-//добавьте слушатель события
+document.querySelector('.b-7').addEventListener('click', makeSeven);
 
 //Задание 8
 //Создайте функцию makeEight, которая отправляет GET-запрос на адрес https://api.agify.io/ с параметром ?name=alice.
 
 function makeEight() {
-	//Ваш код
+	fetch('https://api.agify.io/?name=alice')
+	.then((data) => data.json())
+	.then(data => console.log(data))
+	.catch(error => console.log(error))
 }
 
 document.querySelector('.b-8').addEventListener('click', makeEight);
@@ -77,22 +123,34 @@ document.querySelector('.b-8').addEventListener('click', makeEight);
 function makeNine() {
 	fetch('https://api.agify.io/?name=vadim')
 		.then((response) => response.json())
-		.then((data) => {
+		.then((response) => {
 			const resultElement = document.getElementById('result9');
-			//Ваш код
+			const result = JSON.stringify(response);
+			resultElement.innerText += result;
 		})
 		.catch((error) => {
 			console.error('Ошибка:', error);
 		});
 }
 
-//добавьте слушатель события
+document.querySelector('.b-9').addEventListener('click', makeNine);
 
 //Задание 10
 //Создайте функцию makeTen, которая делает запрос на адрес https://dog.ceo/api/breeds/image/random. Полученное изображение выведите после элемента с id "result10".
 
 function makeTen() {
-	//Ваш код
+	fetch('https://dog.ceo/api/breeds/image/random')
+	.then ((response) => response.json())
+	.then ((response) => {
+	const imageElement = document.createElement('img');
+	imageElement.src = response.message;
+	const idElement = document.getElementById('result10');
+	
+	idElement.insertAdjacentElement('afterend', imageElement);
+	})
+	.catch((error) => {
+		console.error('Ошибка:', error);
+	});
 }
 
 document.querySelector('.b-10').addEventListener('click', makeTen);
@@ -104,20 +162,43 @@ function makeEleven() {
 	fetch('https://api.ipify.org?format=json')
 		.then((response) => response.json())
 		.then((data) => {
-			//Ваш код
+			const ip = data.ip;
+			const result = document.getElementById('result11');		
+			console.log(data)
+			result.innerText = JSON.stringify(ip);
+
+			//интересно было попробовать сразу запросить геолокацию из 12го задания
+			// fetch(`http://ip-api.com/json/${ip}`)
+			// .then(response => response.json())
+			// .then((data) => {
+			// 	console.log(data)
+			// 	const result = document.getElementById('result12')
+			// 	result.innerText = `Пользователь находится в стране ${data.country}, городе ${data.city}`
+			// })
+			// .catch((error) => {
+			// 	console.error('Ошибка во втором запросе:', error);
+			// });
 		})
 		.catch((error) => {
-			console.error('Ошибка:', error);
-		});
+			console.error('Ошибка в первом запросе:', error);
+		});		
 }
 
 document.querySelector('.b-11').addEventListener('click', makeEleven);
 
 //Задание 12
-//Создайте функцию makeTwelve, которая будет получать IP-адрес из поля ввода находить его гео-позицию.
+//Создайте функцию makeTwelve, которая будет получать IP-адрес из поля ввода и находить его гео-позицию.
 
 function makeTwelve() {
-	//Ваш код
+	let value = document.getElementById('ipAddress').value;
+	fetch(`http://ip-api.com/json/${value}`)
+	.then(response => response.json())
+	.then((data) => {
+		document.getElementById('result12').innerText = `Пользователь находится в стране ${data.country}, городе ${data.city}`
+	})
+	.catch((error) => {
+		console.error('Ошибка:', error);
+	});
 }
 
 document.querySelector('.b-12').addEventListener('click', makeTwelve);
@@ -126,10 +207,14 @@ document.querySelector('.b-12').addEventListener('click', makeTwelve);
 //Создайте функцию makeThree, которая делает запрос на адрес 	fetch('https://official-joke-api.appspot.com/random_joke'). Выведите в консоль ответ с сервера, чтобы посмотреть, какие поля есть в ответе.
 
 function makeThirteen() {
-	//Ваш код
+	fetch('https://official-joke-api.appspot.com/random_joke')
+	.then(response => response.json())
+	.then(data => console.log(data))
+
+	.catch(error => console.error('Ошибка:', error));
 }
 
-//добавьте слушатель события
+document.querySelector('.b-13').addEventListener('click', makeThirteen);
 
 //Задание 14
 //Создайте функцию makeFourteen, которая делает запрос на адрес https://official-joke-api.appspot.com/random_joke с помощью функции fetch() . Выведите на страницу информацию о шутке, используя поля "setup" и "punchline" из ответа сервера.
@@ -138,7 +223,7 @@ function makeFourteen() {
 	fetch('https://official-joke-api.appspot.com/random_joke')
 		.then((response) => response.json())
 		.then((data) => {
-			//Ваш код
+			document.getElementById('result14').innerText = `${data.setup} ${data.punchline}`;
 		})
 		.catch((error) => console.error('Ошибка:', error));
 }
