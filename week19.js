@@ -204,7 +204,7 @@ function makeTwelve() {
 document.querySelector('.b-12').addEventListener('click', makeTwelve);
 
 //Задание 13
-//Создайте функцию makeThree, которая делает запрос на адрес 	fetch('https://official-joke-api.appspot.com/random_joke'). Выведите в консоль ответ с сервера, чтобы посмотреть, какие поля есть в ответе.
+//Создайте функцию makeThree, которая делает запрос на адрес fetch('https://official-joke-api.appspot.com/random_joke'). Выведите в консоль ответ с сервера, чтобы посмотреть, какие поля есть в ответе.
 
 function makeThirteen() {
 	fetch('https://official-joke-api.appspot.com/random_joke')
@@ -232,6 +232,15 @@ document.querySelector('.b-14').addEventListener('click', makeFourteen);
 
 //Задание 15
 //Создайте функцию makeFifteen, которая выполняет POST-запрос по адресу https://randomuser.me/api/, используя функцию fetch(). Выведите ответ от сервера в консоль.
+// Нужно создать функцию makeFifteen, которая делает следующие действия:
+
+// Функция makeFifteen должна сделать POST-запрос на адрес https://jsonplaceholder.typicode.com/posts с помощью функции fetch()
+// В теле запроса отправьте JSON-объект с полями title и body, например:
+// { "title": "Заголовок", "body": "Текст поста" }
+// Укажите заголовок "Content-Type" как "application/json" для запроса
+// Полученный ответ от сервера должен быть преобразован в формат JSON с помощью метода response.json()
+// Выведите ответ от сервера в консоль
+// Подсказка: использование JSON.stringify() позволит преобразовать объект в строку.
 
 function makeFifteen() {
 	const postData = {
@@ -244,20 +253,44 @@ function makeFifteen() {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		//Ваш код
+		body: JSON.stringify(postData),
 	})
 		.then((response) => response.json())
 		.then((data) => console.log(data))
 		.catch((error) => console.error('Ошибка:', error));
 }
 
-//добавьте слушатель события
+document.querySelector('.b-15').addEventListener('click', makeFifteen);
 
 //Задание 16
 //Создайте функцию makeSixteen, которая должна сделать PUT-запрос на адрес https://jsonplaceholder.typicode.com/posts/1 с помощью функции fetch(). Выведите ответ с сервера в консоль.
+// Создайте функцию makeSixteen, которая делает следующие действия:
+
+// Функция makeSixteen должна сделать PUT-запрос на адрес https://jsonplaceholder.typicode.com/posts/1 с помощью функции fetch()
+// Укажите заголовок "Content-Type" как "application/json" для запроса
+// В теле запроса отправьте JSON-объект с полями title и body, например:
+// { "title": "Новый заголовок", "body": "Новый текст поста" }
+// Полученный ответ с сервера должен быть преобразован в формат JSON с помощью метода response.json()
+// Выведите ответ с сервера в консоль
+// Подсказка: использование JSON.stringify() позволит преобразовать объект в строку.
 
 function makeSixteen() {
-	//Ваш код
+	const putData = {
+		title: 'Новый заголовок',
+		body: 'Новый текст поста',
+	};
+
+	fetch('https://jsonplaceholder.typicode.com/posts/1', {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(putData),
+
+	})
+	.then((response) => response.json())
+	.then((data) => console.log(data))
+	.catch((error) => console.error('Ошибка:', error));
 }
 
 document.querySelector('.b-16').addEventListener('click', makeSixteen);
@@ -266,17 +299,45 @@ document.querySelector('.b-16').addEventListener('click', makeSixteen);
 //Создайте функцию makeSeventeen, которая должна сделать DELETE-запрос на адрес https://jsonplaceholder.typicode.com/posts/1 с помощью функции fetch(). Полученный ответ с сервера должен быть выведен в консоль.
 
 const makeSeventeen = () => {
-	//Ваш код
+	// const deleteData = {
+	// 	title: 'Удаленный заголовок',
+	// 	body: 'Удаленный текст поста',
+	// };
+
+	fetch('https://jsonplaceholder.typicode.com/posts/1', {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		// body: JSON.stringify(deleteData),
+
+	})
+	.then((response) => response.json())
+	.then((data) => console.log(data))
+	.catch((error) => console.error('Ошибка:', error));
 };
 
-//добавьте слушатель события
+document.querySelector('.b-17').addEventListener('click', makeSeventeen);
 
 //Задание 18
 //Создайте функцию makeEighteen, которая должна сделать POST-запрос на адрес https://jsonplaceholder.typicode.com/photos с помощью функции fetch(). ыведите ответ с сервера в консоль.
 
 function makeEighteen() {
-	//Ваш код
-}
+	const postData = {
+		title: 'Название изображения',
+		url: "https://example.com/image.jpg" }
+
+		fetch('https://jsonplaceholder.typicode.com/photos', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(postData),
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error('Ошибка:', error));
+	};
 
 document.querySelector('.b-18').addEventListener('click', makeEighteen);
 
@@ -284,7 +345,22 @@ document.querySelector('.b-18').addEventListener('click', makeEighteen);
 //Создайте функцию makeNineteen, которая должна сделать POST-запрос на адрес https://jsonplaceholder.typicode.com/users с помощью функции fetch(). Выведите ответ с сервера в консоль.
 
 function makeNineteen() {
-	//Ваш код
+	const postData = {
+		name: "Кот Учёный",
+		username: "kitty",
+		email: "kitty@example.com",
+		phone: "123-456-7890" }
+
+		fetch('https://jsonplaceholder.typicode.com/users', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(postData),
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error('Ошибка:', error));
 }
 
 document.querySelector('.b-19').addEventListener('click', makeNineteen);
@@ -293,7 +369,23 @@ document.querySelector('.b-19').addEventListener('click', makeNineteen);
 //Создайте функцию makeTwenty, которая должна сделать POST-запрос на адрес https://jsonplaceholder.typicode.com/comments с помощью функции fetch(). Выведите ответ с сервера в консоль.
 
 function makeTwenty() {
-	//Ваш код
+	const postData = {
+		name: "Золотая рыбка",
+		email: "goldfish@example.com",
+		body: "Гав-гав!",
+		postId: 1
+	}
+
+		fetch('https://jsonplaceholder.typicode.com/comments', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(postData),
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error('Ошибка:', error));
 }
 
 document.querySelector('.b-20').addEventListener('click', makeTwenty);
@@ -302,7 +394,23 @@ document.querySelector('.b-20').addEventListener('click', makeTwenty);
 //Создайте функцию makeTwentyOne, которая должна сделать PUT-запрос на адрес https://jsonplaceholder.typicode.com/comments/1 с помощью функции fetch(). Выведите ответ с сервера в консоль.
 
 function makeTwentyOne() {
-	//Ваш код
+	const putData = {
+		name: "Золотая рыбка",
+		email: "goldfish@example.com",
+		body: "Буль-буль!",
+		postId: 1
+	}
+
+		fetch('https://jsonplaceholder.typicode.com/comments/1', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(putData),
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error('Ошибка:', error));
 }
 
 document.querySelector('.b-21').addEventListener('click', makeTwentyOne);
@@ -312,7 +420,20 @@ document.querySelector('.b-21').addEventListener('click', makeTwentyOne);
 //Выведите оба ответа с сервера в консоль.
 
 function makePromiseAllOne() {
-	//Ваш код
+	const promise1 = fetch('https://jsonplaceholder.typicode.com/posts/1')
+	.then(response => response.json());
+
+	const promise2 = fetch('https://jsonplaceholder.typicode.com/comments/1')
+	.then(response => response.json());
+
+	Promise.all([promise1, promise2])
+	.then(data => {
+		console.log(data);//массив из двух объектов
+		const [data1, data2] = data;//деструктуризация массива
+		console.log('Данные из первого запроса:', data1);
+		console.log('Данные из второго запроса:', data2)
+	})
+	.catch(error => console.error('Ошибка:', error));
 }
 
 document.querySelector('.b-22').addEventListener('click', makePromiseAllOne);
@@ -323,11 +444,19 @@ document.querySelector('.b-22').addEventListener('click', makePromiseAllOne);
 
 async function makePromiseAllTwo() {
 	try {
-		const response1 = await fetch('https://jsonplaceholder.typicode.com/users/1');
-		const data1 = await response1.json();
+		const response1 = await fetch('https://jsonplaceholder.typicode.com/users/1');//дожидаемся ответа от сервера, когда полностью ответ будет загружен-завершен-передан
+		const data1 = await response1.json();//помещаем результат ответа в переменную
 		console.log(data1);
 
 		//Ваш код
+		const response2 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+		const data2 = await response2.json();
+		console.log(data2);
+		const response3 = await fetch('https://jsonplaceholder.typicode.com/comments/1');
+		const data3 = await response3.json()
+		console.log(data3);
+
+
 	} catch (error) {
 		console.error('Ошибка при выполнении запросов:', error);
 	}
@@ -337,9 +466,9 @@ document.querySelector('.b-23').addEventListener('click', makePromiseAllTwo);
 
 //Задание 24
 //Какое имя выведется в консоль?
-
+//здесь используется замыкание, но я еще до конца не поняла принцип его работы
 const makeTwentyFour = () => {
-	let name = 'Вася';
+	let name = 'Вася'; //выведется это имя
 	function sayHi() {
 		console.log(name);
 	}
@@ -348,31 +477,35 @@ const makeTwentyFour = () => {
 		let name = 'Петя';
 		sayHi();
 	}, 1000);
+	
 };
 
-//добавьте слушатель события
+document.querySelector('.b-24').addEventListener('click', makeTwentyFour);
 
 //Задание 25
 //В каком порядке числа выведутся в консоль?
+
+// в порядке 1, 3, 2
 
 function makeTwentyFive() {
 	console.log(1);
 
 	//Cтавим таймер на 0 миллисекунд
-	setTimeout(function () {
+	setTimeout(function () {//функции попадают в очередь выполнения, а не выполняются немедленно, несмотря на нулевой таймер
 		console.log(2);
 	}, 0);
 
 	console.log(3);
 }
-
-//добавьте слушатель события
+document.querySelector('.b-25').addEventListener('click', makeTwentyFive);
 
 //Задание 26
 //Создайте функцию makeTwentySix, должна использовать `setTimeout` для отображения в консоли сообщения "Прошло 5 секунд" через 5 секунд. Вызывается функция по кнопке Задание 26.
 
 function makeTwentySix() {
-	//Ваш код
+	setTimeout(() => {
+		console.log('Прошло 5 секунд');
+	}, 5000);
 }
 
 document.querySelector('.b-26').addEventListener('click', makeTwentySix);
@@ -381,7 +514,9 @@ document.querySelector('.b-26').addEventListener('click', makeTwentySix);
 //Создайте функцию makeTwentySeven, должна использовать `setTimeout` для отображения в консоли сообщения "Прошло 2 секунды" через 2 секунды. Вызывается функция по кнопке Задание 27.
 
 function makeTwentySeven() {
-	//Ваш код
+	setTimeout(() => {
+		console.log('Прошло 2 секунды');
+	}, 2000);
 }
 
 document.querySelector('.b-27').addEventListener('click', makeTwentySeven);
@@ -390,7 +525,10 @@ document.querySelector('.b-27').addEventListener('click', makeTwentySeven);
 //Создайте функцию makeTwentyEight, которая использует `setInterval` для отображения в консоли сообщения "Прошло 3 секунды" каждые 3 секунды.
 
 function makeTwentyEight() {
-	//Ваш код
+	const interval = setInterval(() => {
+		console.log("Прошло 3 секунды")
+	}, 3000);
+	// clearInterval(interval);
 }
 
 document.querySelector('.b-28').addEventListener('click', makeTwentyEight);
@@ -399,8 +537,11 @@ document.querySelector('.b-28').addEventListener('click', makeTwentyEight);
 //Создайте функцию makeTwentyNine, которая использует `setInterval` для отображения в консоли сообщения "Прошло 2 секунды" каждые 2 секунды.
 
 function makeTwentyNine() {
-	//Ваш код
-}
+		const interval = setInterval(() => {
+			console.log("Прошло 2 секунды")
+		}, 2000);
+		// clearInterval(interval);
+	}
 
 document.querySelector('.b-29').addEventListener('click', makeTwentyNine);
 
@@ -408,7 +549,10 @@ document.querySelector('.b-29').addEventListener('click', makeTwentyNine);
 //Создайте функцию makeThirty, которая использует `setInterval` для отображения в консоли сообщения "Прошло 5 секунд" каждые 5 секунд.
 
 function makeThirty() {
-	//Ваш код
+	const interval = setInterval(() => {
+		console.log("Прошло 5 секунд")
+	}, 5000);
+	// clearInterval(interval);
 }
 
 document.querySelector('.b-30').addEventListener('click', makeThirty);
