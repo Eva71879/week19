@@ -1,0 +1,51 @@
+* {
+    font-family: 'Playfair Display', serif;
+    font-family: 'Raleway', sans-serif;
+    /* outline: 1px solid black; */
+}
+
+.container {
+    margin: 40px 50px;
+    
+}
+.input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.post-title, .post-body {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: lightgreen 3px dotted;
+    width: 30%;
+    height: 60px;
+}
+
+
+.post-public {
+    width: 30%;
+    height: 60px;
+    background-color: #07a641;
+    font-weight: 500;
+    font-size: 25px;
+    border: none;
+}
+
+h2 {
+    color: #07a641;
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+    margin-bottom: 90px;
+}
+
+
+.error {
+    color: red;
+    font-size: 25px;
+}

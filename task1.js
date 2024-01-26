@@ -24,27 +24,6 @@ try {
     });
 } catch (error) {
     console.error('Ошибка при выполнении запросов:', error);
-
-
-    // return article;
-
-	// .then(response => {
-	// 	return response.json();
-	// })
-    // .then(data => {
-    //     console.log(typeof data);
-    //     console.log(data);
-    //     const article = document.createElement('article');
-    //     const h2 = document.createElement('h2');
-    //     const p = document.createElement('p');
-    // })
-    // .then(data => {
-
-    // })
-
-    // .catch((error) => {
-	// 	console.log('Ошибка. Запрос не выполнен: ', error)
-	// })
 }
 };
 
